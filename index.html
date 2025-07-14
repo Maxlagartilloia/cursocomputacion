@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="">
+<html lang="es" class="dark"> <!-- Set default to dark mode -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,7 @@
             transition: background-color 0.3s, color 0.3s;
             cursor: none; /* Ocultamos el cursor por defecto */
         }
+        /* Gradient text remains pink/purple as per previous design */
         .gradient-text {
             background-image: linear-gradient(to right, #ec4899, #d946ef, #8b5cf6);
             -webkit-background-clip: text;
@@ -61,7 +62,7 @@
         .cursor-outline {
             width: 30px; /* Slightly smaller */
             height: 30px; /* Slightly smaller */
-            border: 2px solid #d946ef; /* Changed default border color */
+            border: 2px solid #f97316; /* Orange color for cursor outline */
             transition: all 0.05s ease-out; /* Faster transition */
             pointer-events: none; /* Ensure it doesn't interfere with clicks */
             position: fixed;
@@ -74,29 +75,30 @@
         }
         body:has(a:hover, button:hover) .cursor-outline {
             transform: translate(-50%, -50%) scale(1.3); /* Slightly smaller scale on hover */
-            border-color: #ec4899; /* Changed hover border color */
+            border-color: #ea580c; /* Darker orange on hover */
         }
         .star-particle {
             position: fixed;
             pointer-events: none;
             border-radius: 50%;
-            background-image: linear-gradient(to right, #f9a8d4, #f472b6, #ec4899);
+            /* Orange gradient for star particles */
+            background-image: linear-gradient(to right, #fdba74, #fb923c, #f97316);
             z-index: 9998;
             transition: all 0.2s cubic-bezier(0.05, 0.8, 0.2, 0.95); /* Faster decay */
         }
     </style>
 </head>
-<body>
+<body class="bg-emerald-50 dark:bg-emerald-950 text-gray-800 dark:text-gray-200"> <!-- Soft pink in light mode, dark green in dark mode -->
 
     <!-- Cursor Personalizado -->
     <div class="cursor-dot"></div> <!-- This will be invisible -->
     <div class="cursor-outline"></div>
 
     <!-- Header -->
-    <header class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-md sticky top-0 z-20">
+    <header class="bg-emerald-50/80 dark:bg-emerald-900/80 backdrop-blur-sm shadow-md sticky top-0 z-20"> <!-- Header background adjusted for green theme -->
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-xl md:text-2xl font-bold gradient-text">Tu Aventura Digital</h1>
-            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-700 rounded-lg text-sm p-2.5">
+            <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-700 rounded-lg text-sm p-2.5">
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
                 <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm-.707 10.607a1 1 0 010-1.414l.707-.707a1 1 0 111.414 1.414l-.707-.707a1 1 0 01-1.414 0zM11 17a1 1 0 100 2v-1a1 1 0 100-2h-1zM3 11a1 1 0 100 2h1a1 1 0 100-2H3z"></path></svg>
             </button>
@@ -110,7 +112,7 @@
             <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Un curso intensivo de 20 días para dominar las herramientas que te harán brillar en tus estudios y más allá.</p>
             <p id="user-id-display" class="mt-2 text-sm text-gray-500 dark:text-gray-400">ID de Usuario: Cargando...</p>
         </div>
-        <div class="bg-white dark:bg-gray-800/50 rounded-2xl shadow-2xl shadow-fuchsia-200/50 dark:shadow-fuchsia-900/20 p-6 md:p-10">
+        <div class="bg-emerald-50 dark:bg-emerald-900/50 rounded-2xl shadow-2xl shadow-fuchsia-200/50 dark:shadow-fuchsia-900/20 p-6 md:p-10"> <!-- Main content background adjusted -->
             <div id="course-container" class="space-y-4">
                 <!-- Los días del curso se inyectarán aquí -->
             </div>
@@ -453,7 +455,7 @@
             dayWrapper.className = 'border border-gray-200 dark:border-gray-700/50 rounded-2xl shadow-lg shadow-fuchsia-500/10 dark:shadow-fuchsia-800/10 overflow-hidden';
 
             const dayHeader = document.createElement('button');
-            dayHeader.className = 'w-full text-left p-5 flex justify-between items-center bg-white dark:bg-gray-800 hover:bg-pink-50/50 dark:hover:bg-gray-700/50 transition duration-300 focus:outline-none';
+            dayHeader.className = 'w-full text-left p-5 flex justify-between items-center bg-white dark:bg-emerald-800 hover:bg-emerald-100/50 dark:hover:bg-emerald-700/50 transition duration-300 focus:outline-none'; // Adjusted for green theme
             
             dayHeader.innerHTML = `
                 <div class="flex items-center">
@@ -464,7 +466,7 @@
             `;
             
             const dayContent = document.createElement('div');
-            dayContent.className = 'day-content bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 leading-relaxed';
+            dayContent.className = 'day-content bg-white dark:bg-emerald-900 text-gray-700 dark:text-gray-300 leading-relaxed'; // Adjusted for green theme
             
             let contentHTML = `
                 <div class="p-4">
@@ -475,7 +477,7 @@
             
             if (day.quiz) {
                 contentHTML += `
-                    <div class="quiz-main-container p-6 bg-gradient-to-br from-pink-50 to-purple-100 dark:from-gray-700 dark:to-gray-800 border-t border-gray-200 dark:border-gray-700/50">
+                    <div class="quiz-main-container p-6 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-800 dark:to-emerald-900 border-t border-gray-200 dark:border-gray-700/50"> <!-- Adjusted for green theme -->
                         <div class="flex justify-between items-center mb-4">
                             <p class="font-bold text-lg text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-500">✨ ¡Ponte a prueba!</p>
                             <p class="quiz-progress font-semibold text-gray-600 dark:text-gray-300"></p>
@@ -672,7 +674,7 @@
 
             // Display overall course grade
             const finalGradeContainer = document.createElement('div');
-            finalGradeContainer.className = 'text-center mt-8 p-6 bg-gradient-to-r from-purple-100 to-fuchsia-100 dark:from-gray-700 dark:to-gray-800 rounded-2xl shadow-lg';
+            finalGradeContainer.className = 'text-center mt-8 p-6 bg-gradient-to-r from-emerald-100 to-emerald-200 dark:from-emerald-800 dark:to-emerald-900 rounded-2xl shadow-lg'; // Adjusted for green theme
             if (totalMaxScore > 0) {
                 const percentage = ((totalScore / totalMaxScore) * 100).toFixed(2);
                 finalGradeContainer.innerHTML = `<p class="text-2xl font-bold gradient-text">Calificación Final del Curso: ${totalScore} / ${totalMaxScore} (${percentage}%)</p>`;
@@ -696,10 +698,15 @@
 
         themeToggleBtn.addEventListener('click', toggleTheme);
 
-        if (document.documentElement.classList.contains('dark')) {
+        // Set initial theme based on local storage or system preference
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
             themeToggleLightIcon.classList.remove('hidden');
+            themeToggleDarkIcon.classList.add('hidden');
         } else {
+            document.documentElement.classList.remove('dark');
             themeToggleDarkIcon.classList.remove('hidden');
+            themeToggleLightIcon.classList.add('hidden');
         }
 
         // Cursor animation logic
@@ -770,13 +777,6 @@
         // Firebase initialization and authentication
         // This part should be at the end, after all functions it calls are defined.
         try {
-            // Script para evitar el parpadeo del tema oscuro (FOUC) - Moved here for consistency
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark')
-            }
-
             app = initializeApp(firebaseConfig);
             db = getFirestore(app);
             auth = getAuth(app);
